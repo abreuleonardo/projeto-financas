@@ -1,30 +1,17 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyAnApQ2XgoFraOsmuBCMo5xFQ7j3tFBTq0',
-  authDomain: 'projeto-financas-d2516.firebaseapp.com',
-  projectId: 'projeto-financas-d2516',
-  storageBucket: 'projeto-financas-d2516.firebasestorage.app',
-  messagingSenderId: '223977643841',
-  appId: '1:223977643841:web:f462bf81bc23d6c8cc8bc0',
-  measurementId: 'G-PPYZ0JD54H'
+  apiKey: "AIzaSyBR47AMD_jQ6LB7XxPVttZXuTmK9Mp2lHE",
+  authDomain: "controle-de-gastos-cc727.firebaseapp.com",
+  projectId: "controle-de-gastos-cc727",
+  storageBucket: "controle-de-gastos-cc727.firebasestorage.app",
+  messagingSenderId: "763468214262",
+  appId: "1:763468214262:web:5eb043cbd1a2a028e0a1d7"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-// Analytics (safe fallback para evitar possíveis falhas de runtime)
-if (typeof window !== 'undefined') {
-  try {
-    getAnalytics(app);
-  } catch (error) {
-    console.warn('Firebase Analytics não pôde ser inicializado:', error);
-  }
-}
-
-// Firestore
-export const db = getFirestore(app);
