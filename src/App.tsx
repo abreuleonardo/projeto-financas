@@ -146,7 +146,7 @@ export default function App() {
 
             <div>
               <h1 className="text-xl font-bold tracking-tight text-slate-800">
-                FinançasPro
+                Controle hoje. Conquiste amanhã.
               </h1>
 
               <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">
