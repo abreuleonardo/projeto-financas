@@ -17,8 +17,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Analytics
-const analytics = getAnalytics(app);
+// Analytics (safe fallback para evitar possíveis falhas de runtime)
+if (typeof window !== 'undefined') {
+  try {
+    getAnalytics(app);
+  } catch (error) {
+    console.warn('Firebase Analytics não pôde ser inicializado:', error);
+  }
+}
 
 // Firestore
 export const db = getFirestore(app);

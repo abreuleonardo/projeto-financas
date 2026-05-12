@@ -5,6 +5,7 @@ export type Category =
   | 'Saúde'
   | 'Educação'
   | 'Contas'
+  | 'Presentes'
   | 'Outros';
 
 export interface Expense {
@@ -16,12 +17,12 @@ export interface Expense {
 }
 
 export const CATEGORIES: Category[] = [
+  'Contas',
   'Lazer',
   'Alimentação',
   'Transporte',
   'Saúde',
-  'Educação',
-  'Contas',
+  'Presentes',
   'Outros',
 ];
 
@@ -32,5 +33,6 @@ export const CATEGORY_COLORS: Record<Category, string> = {
   Saúde: '#ef4444',
   Educação: '#22c55e',
   Contas: '#eab308',
+  Presentes: '#f472b6',
   Outros: '#64748b',
 };
