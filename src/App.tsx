@@ -525,6 +525,71 @@ export default function App() {
           </div>
         </section>
 
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm overflow-x-auto">
+            <h2 className="text-xl font-bold mb-4">Tabela de despesas</h2>
+            <table className="min-w-full divide-y divide-slate-200 text-left text-sm">
+              <thead>
+                <tr>
+                  <th className="px-4 py-3 font-semibold text-slate-600">Descrição</th>
+                  <th className="px-4 py-3 font-semibold text-slate-600">Categoria</th>
+                  <th className="px-4 py-3 font-semibold text-slate-600">Valor</th>
+                  <th className="px-4 py-3 font-semibold text-slate-600">Data</th>
+                  <th className="px-4 py-3 font-semibold text-slate-600">Ações</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200">
+                {expenses.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="px-4 py-6 text-center text-slate-500">
+                      Nenhuma despesa registrada ainda.
+                    </td>
+                  </tr>
+                ) : (
+                  expenses.map((expense) => (
+                    <tr key={expense.id}>
+                      <td className="px-4 py-4 text-slate-700">{expense.description}</td>
+                      <td className="px-4 py-4 text-slate-700">{expense.category}</td>
+                      <td className="px-4 py-4 text-orange-600 font-semibold">{formatCurrency(expense.amount)}</td>
+                      <td className="px-4 py-4 text-slate-500">{format(parseISO(expense.date), "dd/MM/yyyy")}</td>
+                      <td className="px-4 py-4">
+                        <button
+                          onClick={() => removeExpense(expense.id)}
+                          className="rounded-lg bg-red-50 px-3 py-1 text-red-600 hover:bg-red-100 transition-colors"
+                        >
+                          Excluir
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+            <h2 className="text-xl font-bold mb-4">Comparação por categoria</h2>
+            <div className="h-96">
+              {categoryData.length > 0 ? (
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={categoryData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                    <XAxis dataKey="name" tick={{ fill: '#475569', fontSize: 12 }} />
+                    <YAxis tickFormatter={(value) => formatCurrency(value)} tick={{ fill: '#475569', fontSize: 12 }} />
+                    <Tooltip formatter={(value: number) => formatCurrency(value)} />
+                    <Legend />
+                    <Bar dataKey="value" name="Gastos" fill="#4f46e5" radius={[8, 8, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              ) : (
+                <div className="flex h-full items-center justify-center text-slate-500">
+                  Registre despesas para ver o gráfico.
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
         {/* FOOTER */}
         <footer className="flex justify-center pt-6">
 
